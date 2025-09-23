@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet";
 import { AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Toaster } from "react-hot-toast"; // ✅ install: npm install react-hot-toast
-
+import "./index.css";
 // Components
 import Header from "./Components/Header";
 import Footer from "./Components/Footer";
