@@ -32,13 +32,13 @@ export default function Contact() {
     setLoading(true);
 
     try {
-      const response = await fetch("/api/send-email", {
+      const res = await fetch("/api/send-email", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
-      const data = await response.json();
+      const data = await res.json();
 
       if (data.success) {
         toast.success("✅ Message sent successfully!");
@@ -46,8 +46,8 @@ export default function Contact() {
       } else {
         toast.error("❌ Failed to send. Try again.");
       }
-    } catch (error) {
-      console.error("Send email error:", error);
+    } catch (err) {
+      console.error("Send email error:", err);
       toast.error("⚠️ Something went wrong. Try again.");
     } finally {
       setLoading(false);

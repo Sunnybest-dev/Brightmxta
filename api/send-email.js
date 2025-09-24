@@ -17,7 +17,7 @@ export default async function handler(req, res) {
   try {
     await resend.emails.send({
       from: "Brightmxta <onboarding@resend.dev>", // verified Resend sender
-      to: process.env.EMAIL_TO, // the email that receives the messages
+      to: process.env.EMAIL_TO, // your receiving email
       subject: `New Message from ${name}`,
       text: `From: ${email}\n\n${message}`,
       replyTo: email,
