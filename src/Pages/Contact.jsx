@@ -19,11 +19,15 @@ export default function Contact() {
     setStatus("");
 
     try {
-      const response = await fetch("http://localhost:5000/send", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/send`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
 
       const data = await response.json();
 
@@ -34,7 +38,7 @@ export default function Contact() {
         setStatus("❌ Failed to send email.");
       }
     } catch (error) {
-      console.error(error);
+      console.error("Error:", error);
       setStatus("⚠️ Something went wrong. Try again.");
     } finally {
       setLoading(false);
@@ -49,7 +53,7 @@ export default function Contact() {
         placeholder="Your Name"
         value={formData.name}
         onChange={handleChange}
-        className="border p-2 w-full"
+        className="border p-2 w-full rounded"
         required
       />
       <input
@@ -58,7 +62,7 @@ export default function Contact() {
         placeholder="Your Email"
         value={formData.email}
         onChange={handleChange}
-        className="border p-2 w-full"
+        className="border p-2 w-full rounded"
         required
       />
       <textarea
@@ -66,12 +70,14 @@ export default function Contact() {
         placeholder="Your Message"
         value={formData.message}
         onChange={handleChange}
-        className="border p-2 w-full"
+        className="border p-2 w-full rounded"
         required
       />
       <button
         type="submit"
-        className="bg-blue-600 text-white px-4 py-2 rounded"
+        className={`px-4 py-2 rounded text-white transition ${
+          loading ? "bg-gray-500 cursor-not-allowed" : "bg-blue-600 hover:bg-blue-700"
+        }`}
         disabled={loading}
       >
         {loading ? "Sending..." : "Send"}
