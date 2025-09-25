@@ -18,7 +18,6 @@ import Blog from "./Pages/Blog";
 import Schedule from "./Pages/Schedule";
 import Contact from "./Pages/Contact";
 import BlogPost from "./Pages/BlogPost";
-import TestBackend from "./Pages/TestBackend";
 
 
 export default function App() {
@@ -61,7 +60,6 @@ export default function App() {
                 </PageWrapper>
               }
             />
-            <Route path="/test-backend" element={<TestBackend />} /> {/* ⬅️ add this */}
             <Route
               path="/Services"
               element={
